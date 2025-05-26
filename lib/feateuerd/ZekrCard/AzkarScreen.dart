@@ -92,6 +92,8 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                       Row(
                         children: [
                           Expanded(
+                           
+
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: ClipRRect(
