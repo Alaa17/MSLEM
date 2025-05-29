@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_mslem/constint.dart';
 import 'package:my_mslem/feateuerd/home/Khatmah/next_tow_Page.dart';
 
 
@@ -20,11 +21,11 @@ class _NextKhatmaState extends State<NextKhatma> {
     return Scaffold(
       backgroundColor: Color(0xffebebdc),
       appBar: AppBar(
-  title: const Text('أذكار الصباح'),
+  title: const Text('أذكار الصباح',style: TextStyle(color: Colors.white),),
   centerTitle: true,
-  backgroundColor: Colors.teal,
+  backgroundColor: AppColors.primaryColor,
   leading: IconButton(
-    icon: const Icon(Icons.arrow_back),
+    icon: const Icon(Icons.arrow_back,color: Colors.white,),
     onPressed: () {
       Navigator.pop(context); // يرجع للخلف
     },
@@ -54,7 +55,7 @@ class _NextKhatmaState extends State<NextKhatma> {
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: Color(0xFF558B2F)),
+                        border: Border.all(color: AppColors.primaryColor),
                         borderRadius: BorderRadius.circular(22),
                       ),
                       child: Row(
@@ -66,12 +67,12 @@ class _NextKhatmaState extends State<NextKhatma> {
                               });
                             },
                             icon: Icon(Icons.remove),
-                            color: Color(0xFF558B2F),
+                            color: AppColors.primaryColor,
                           ),
                           Container(
       width: 1, // 👈 عرض الخط
       height: 26, // 👈 طول الخط
-      color: Colors.green, // 👈 لون الخط
+      color:AppColors.primaryColor, // 👈 لون الخط
       margin: EdgeInsets.symmetric(horizontal: 8),
     ),
                           IconButton(
@@ -81,7 +82,7 @@ class _NextKhatmaState extends State<NextKhatma> {
                               });
                             },
                             icon: Icon(Icons.add),
-                            color: Color(0xFF558B2F),
+                            color: AppColors.primaryColor,
                           ),
                         ],
                       ),
@@ -92,7 +93,7 @@ class _NextKhatmaState extends State<NextKhatma> {
                           EdgeInsets.symmetric(horizontal: 35, vertical: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: Colors.green),
+                        border: Border.all(color: AppColors.primaryColor),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: Text(
@@ -100,7 +101,7 @@ class _NextKhatmaState extends State<NextKhatma> {
                         style:
                             TextStyle(fontSize: 19, 
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF558B2F)),
+                            color: AppColors.primaryColor),
                       ),
                     ),
                   ],
@@ -209,7 +210,7 @@ SizedBox(height: 80),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF558B2F),
+                backgroundColor:AppColors.primaryColor,
                 minimumSize: Size(double.infinity, 50),
               ),
               child: Text(

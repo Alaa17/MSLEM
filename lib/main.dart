@@ -21,7 +21,7 @@ class MSLEM extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Amiri', // ✅ هنا حدد الخط
+        fontFamily: 'Cairo', // ✅ هنا حدد الخط
         textTheme: GoogleFonts.notoNaskhArabicTextTheme(),
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),

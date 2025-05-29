@@ -78,8 +78,8 @@ Padding(
                   // ✅ كروت جديدة
                   _buildCard(
                     context: context,
-                    title: 'أذكار بعد الصلاة',
-                    iconPath: 'assets/icon/dua.png',
+                    title: 'دعاء ألأنجاب',
+                    iconPath: 'assets/icons/child.png',
                     gradient: const LinearGradient(
                       colors: [Color(0xFFE2D6F5), Color(0xFFFFFFFF)],
                       begin: Alignment.bottomCenter,
@@ -104,8 +104,8 @@ Padding(
                   ),
                   _buildCard(
                     context: context,
-                    title: ' أذكار متنوعه',
-                    iconPath: 'assets/icon/pray (1).png',
+                    title: ' أدعية ألانبياء',
+                    iconPath: 'assets/icon/dua.png',
                     gradient: const LinearGradient(
                       colors: [Color.fromARGB(255, 193, 252, 217), Color(0xFFFFFFFF)],
                       begin: Alignment.bottomCenter,
@@ -117,8 +117,8 @@ Padding(
                   ),
                   _buildCard(
                     context: context,
-                    title: 'الخروج من المنزل',
-                    iconPath: 'assets/icon/property-insurance.png',
+                    title: 'ألاستغفار',
+                    iconPath: 'assets/icons/pray.png',
                     gradient: const LinearGradient(
                       colors: [Color(0xFFFFF3CF), Color(0xFFFFFFFF)],
                       begin: Alignment.bottomCenter,
@@ -130,8 +130,8 @@ Padding(
                   ),
                   _buildCard(
                     context: context,
-                    title: 'دخول المنزل',
-                    iconPath: 'assets/icon/protection.png',
+                    title: ' السبحة',                 
+                    iconPath: 'assets/icons/beads.png',
                     gradient: const LinearGradient(
                       colors: [Color(0xFFE2F5D6), Color(0xFFFFFFFF)],
                       begin: Alignment.bottomCenter,
@@ -143,7 +143,7 @@ Padding(
                   ),
                    _buildCard(
                     context: context,
-                    title: 'أذكار السفر',
+                    title: 'أدعية السفر',
                     iconPath: 'assets/icon/travelling.png',
                     gradient: const LinearGradient(
                       colors: [Color.fromARGB(255, 245, 197, 201), Color(0xFFFFFFFF)],

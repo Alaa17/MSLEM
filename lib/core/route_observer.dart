@@ -5,7 +5,7 @@ import 'package:my_mslem/feateuerd/Details_azkar/azkar_nithg.dart';
 import 'package:my_mslem/feateuerd/Details_azkar/azkar_chaing_zker.dart';
 import 'package:my_mslem/feateuerd/Details_azkar/azkar_sleep.dart';
 import 'package:my_mslem/feateuerd/Details_azkar/azkar_uot_hmoe.dart';
-import 'package:my_mslem/feateuerd/Details_azkar/azkar_inst_home.dart';
+import 'package:my_mslem/feateuerd/Details_azkar/tasbeeh_screen.dart';
 import 'package:my_mslem/feateuerd/Details_azkar/azkar_trivel.dart';
 import 'package:my_mslem/feateuerd/Details_azkar/quranPage.dart';
 
@@ -34,7 +34,7 @@ class AppRoutes {
     //  case home:
     //    return MaterialPageRoute(builder: (_) => const HomePage());
       case quran:
-        return MaterialPageRoute(builder: (_) => const AKARMORNING());
+        return MaterialPageRoute(builder: (_) => const AzkarSbah());
       case azkar:
         return MaterialPageRoute(builder: (_) => const AzkarNithg());
       case sleep:
@@ -46,7 +46,7 @@ class AppRoutes {
       case fatwa:
         return MaterialPageRoute(builder: (_) => const AzkarSlwat());
       case ruqy:
-        return MaterialPageRoute(builder: (_) => const AzkarTrivel());
+        return MaterialPageRoute(builder: (_) =>  TasbeehWaveScreen());
       case chaingpage:
         return MaterialPageRoute(builder: (_) => const AzkarOutHome());
       case morning:

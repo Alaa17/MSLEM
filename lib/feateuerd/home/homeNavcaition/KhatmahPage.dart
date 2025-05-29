@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_mslem/constint.dart';
 import 'package:my_mslem/feateuerd/home/Khatmah/next_khatmah_page.dart';
 import 'package:my_mslem/feateuerd/home/Khatmah/next_tow_Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,7 +72,7 @@ class _NewKhatmahPageState extends State<NewKhatmahPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
+          backgroundColor: AppColors.primaryColor,
           title: Text(
             'ختمة جديدة',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -141,7 +142,7 @@ class _NewKhatmahPageState extends State<NewKhatmahPage> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: AppColors.primaryColor,
                     padding: EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),

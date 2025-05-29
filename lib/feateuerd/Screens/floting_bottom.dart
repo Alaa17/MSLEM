@@ -63,9 +63,9 @@ class _FlotingBottomState extends State<FlotingBottom> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Color.fromARGB(255, 3, 252, 11),
-            blurRadius: 3,
-            spreadRadius: 1,
+            color: Color.fromARGB(255, 2, 248, 35),
+            blurRadius: 4,
+            spreadRadius: 3,
           ),
         ],
       ),

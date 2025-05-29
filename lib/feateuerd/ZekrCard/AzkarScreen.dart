@@ -1,14 +1,20 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:share_plus/share_plus.dart'; // ← مشاركة
+import 'package:share_plus/share_plus.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class MorningAzkarScreen extends StatefulWidget {
+class AzkarScreen extends StatefulWidget {
+  final String jsonFilePath;
+  final String title;
+
+  const AzkarScreen({Key? key, required this.jsonFilePath, required this.title}) : super(key: key);
+
   @override
-  _MorningAzkarScreenState createState() => _MorningAzkarScreenState();
+  _AzkarScreenState createState() => _AzkarScreenState();
 }
 
-class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
+class _AzkarScreenState extends State<AzkarScreen> {
   List<dynamic> azkarList = [];
   int currentIndex = 0;
   int currentRepeat = 0;
@@ -21,7 +27,7 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
   }
 
   Future<void> loadAzkar() async {
-    final String response = await rootBundle.loadString('assets/json/azkar_morning.json');
+    final String response = await rootBundle.loadString(widget.jsonFilePath);
     final data = json.decode(response);
     setState(() {
       azkarList = data;
@@ -57,33 +63,34 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple.shade400,
+        backgroundColor: const Color.fromARGB(255, 10, 6, 247),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back,color: Colors.white,),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text("أذكار الصباح", 
-        style: TextStyle(color: Colors.white, 
-        fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.nightlight_round),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.cairo(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
           ),
-        ],
+        ),
+        centerTitle: true,
       ),
       body: GestureDetector(
-        onTap: handleCounterTap, // ← أي ضغطة
+        onTap: handleCounterTap,
         child: azkarList.isEmpty
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : isFinished
                 ? Center(
                     child: Text(
                       "✅ تم ذكر الله",
-                      style: TextStyle(fontSize: 28, 
-                      fontWeight: FontWeight.bold, color: 
-                      Colors.deepPurple),
+                      style: GoogleFonts.cairo(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                      ),
                     ),
                   )
                 : Column(
@@ -92,8 +99,6 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                       Row(
                         children: [
                           Expanded(
-                           
-
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: ClipRRect(
@@ -103,7 +108,7 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                                   child: LinearProgressIndicator(
                                     value: (currentIndex + 1) / azkarList.length,
                                     backgroundColor: Colors.grey[300],
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurple),
+                                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
                                   ),
                                 ),
                               ),
@@ -111,60 +116,94 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                           ),
                           Text(
                             "${currentIndex + 1}/${azkarList.length}",
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: GoogleFonts.cairo(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                         ],
                       ),
 
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
 
                       // الذكر والفائدة
-                      Expanded(
-                        child: SingleChildScrollView(
-                          padding: EdgeInsets.all(22),
-                          child: Column(
-                            children: [
-                              Text(
-                                azkarList[currentIndex]["text"],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontFamily: 'Amiri', 
-                                fontSize: 22),
-                              ),
-                              SizedBox(height: 16),
-                              Divider(
-                                
-                                thickness: 1.1, color: Colors.grey[400]),
-                              SizedBox(height: 16),
-                              Text(
-                                azkarList[currentIndex]["benefits"],
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontFamily: 'Amiri', fontSize: 20, color: Colors.deepPurple),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // الذكر والفائدة
+Expanded(
+  child: SingleChildScrollView(
+    padding: const EdgeInsets.all(22),
+    child: Column(
+      children: [
+        if (azkarList[currentIndex]["isQuran"] == true) ...[
+          Text(
+            "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.cairo(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: const Color.fromARGB(255, 6, 124, 10),
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+        Text(
+          azkarList[currentIndex]["text"] ?? '',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.cairo(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        const SizedBox(height: 8),
 
-                      // العداد والنسخ والمشاركة
+        // عرض حقل "from" إذا موجود
+        if (azkarList[currentIndex]["from"] != null) ...[
+          Text(
+            " ${azkarList[currentIndex]["from"]}",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.cairo(
+              color: Colors.black,
+              fontSize: 17,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+          const SizedBox(height: 16),
+        ] else
+          const SizedBox(height: 16),
+
+        Divider(thickness: 1.1, color: Colors.black),
+        const SizedBox(height: 16),
+        Text(
+          azkarList[currentIndex]["benefits"] ?? '',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.cairo(
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+
+
+                      // العداد والمشاركة وعدد التكرار
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.share, 
-                              size: 33,
-                              color: Colors.deepPurple),
+                              icon: const Icon(Icons.share, size: 33, color: Color.fromARGB(255, 10, 6, 247)),
                               onPressed: () {
-                                final text = azkarList[currentIndex]["text"];
-                                final benefits = azkarList[currentIndex]["benefits"];
+                                final text = azkarList[currentIndex]["text"] ?? '';
+                                final benefits = azkarList[currentIndex]["benefits"] ?? '';
                                 Share.share('📿 $text\n\n📌 الفائدة: $benefits');
                               },
                             ),
-
-                            // الدائرة
                             Column(
                               children: [
                                 Stack(
@@ -176,28 +215,40 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                                       child: CircularProgressIndicator(
                                         value: currentRepeat / azkarList[currentIndex]["repeat"],
                                         backgroundColor: Colors.grey[300],
-                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.deepPurple),
+                                        valueColor: const AlwaysStoppedAnimation<Color>(
+                                          Color.fromARGB(255, 10, 6, 247),
+                                        ),
                                         strokeWidth: 7,
                                       ),
                                     ),
                                     Text(
                                       '$currentRepeat',
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
-
-                            IconButton(
-                              icon: const Icon(Icons.copy, size: 33),
-                              onPressed: () {
-                                Clipboard.setData(
-                                    ClipboardData(text: azkarList[currentIndex]["text"]));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('📋 تم نسخ الذكر')),
-                                );
-                              },
+                            // عدد التكرار بدل الأيقونة
+                            Column(
+                              children: [
+                                Text(
+                                  'عدد التكرار',
+                                  style: GoogleFonts.cairo(
+                                    fontSize: 16,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '${azkarList[currentIndex]["repeat"]} مرات',
+                                  style: GoogleFonts.cairo(
+                                    fontSize: 18,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -211,15 +262,16 @@ class _MorningAzkarScreenState extends State<MorningAzkarScreen> {
                           child: ElevatedButton(
                             onPressed: handleNextZekr,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple,
-                              padding: EdgeInsets.symmetric(vertical: 11),
+                              backgroundColor: const Color.fromARGB(255, 10, 6, 247),
+                              padding: const EdgeInsets.symmetric(vertical: 11),
                             ),
                             child: Text(
                               "التالي",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22),
+                              style: GoogleFonts.cairo(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                              ),
                             ),
                           ),
                         ),

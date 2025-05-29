@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:my_mslem/feateuerd/home/Khatmah/bottom_Navigation_Bar.dart';
-import 'package:my_mslem/feateuerd/home/widget/home_page.dart';
 
 class TowKhatmahPage extends StatelessWidget {
    TowKhatmahPage({super.key});
@@ -36,9 +34,9 @@ int loadProgress() {
         gradient: LinearGradient(
           colors: [
            
-            Color.fromARGB(255, 34, 10, 243),
-             Color(0xffFFFFFF),
-             Color.fromARGB(255, 102, 78, 209),
+          
+             Color(0xff9ce3eb),
+             Color(0xff9ce3eb),
           ],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
